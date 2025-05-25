@@ -36,7 +36,7 @@ class MicropostsTest < ApplicationSystemTestCase
 
   test "should destroy Micropost" do
     visit micropost_url(@micropost)
-    accept_confirm { click_on "Destroy this micropost", match: :first }
+    accept_confirm { accept_confirm { click_on "Destroy this micropost", match: :first } }
 
     assert_text "Micropost was successfully destroyed"
   end

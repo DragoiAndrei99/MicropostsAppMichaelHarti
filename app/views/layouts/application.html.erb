@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="">
 <head>
-  <title>MicropostAppTutorial</title>
+  <title><%= content_for?(:title) ? "#{yield(:title)} | MicropostAppTutorial" : "MicropostAppTutorial" %></title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -12,19 +12,9 @@
 </head>
 
 <body class="bg-gray-100 text-gray-900 min-h-screen flex flex-col">
-<header class="bg-white shadow">
-  <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-    <h1 class="text-xl font-bold">
-      <%= link_to "MicropostApp", root_path, class: "text-indigo-600 hover:text-indigo-800" %>
-    </h1>
-    <nav class="space-x-4">
-      <%= link_to "Home", root_path, class: "text-gray-700 hover:text-indigo-600" %>
-      <%= link_to "Help", help_path, class: "text-gray-700 hover:text-indigo-600" %>
-      <%= link_to "Users", users_path, class: "text-gray-700 hover:text-indigo-600" %>
-      <%= link_to "Microposts", microposts_path, class: "text-gray-700 hover:text-indigo-600" %>
-    </nav>
-  </div>
-</header>
+
+<%= render "shared/navbar" %>
+
 <main class="container mx-auto px-4 py-6 flex-grow">
   <% if notice %>
     <div class="mb-4 bg-green-100 text-green-800 px-4 py-2 rounded">
@@ -41,8 +31,7 @@
   <%= yield %>
 </main>
 
-<footer class="text-center text-sm text-gray-500 py-4 border-t">
-  &copy; <%= Time.current.year %> MicropostAppTutorial
-</footer>
+<%= render "shared/footer" %>
+
 </body>
 </html>

@@ -36,7 +36,7 @@ class UsersTest < ApplicationSystemTestCase
 
   test "should destroy User" do
     visit user_url(@user)
-    accept_confirm { click_on "Destroy this user", match: :first }
+    accept_confirm { accept_confirm { click_on "Destroy this user", match: :first } }
 
     assert_text "User was successfully destroyed"
   end
