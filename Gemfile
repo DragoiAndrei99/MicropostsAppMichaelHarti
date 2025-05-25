@@ -67,3 +67,6 @@ end
 
 gem "cssbundling-rails", "~> 1.4"
 gem "tailwindcss-rails"
+
+gem "bcrypt", "~> 3.1.7"
+
