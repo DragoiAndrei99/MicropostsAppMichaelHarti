@@ -1,0 +1,55 @@
+<h2 class="text-xl font-bold mb-4">Login</h2>
+
+<form id="login-form" class="space-y-4">
+  <%= csrf_meta_tags %>
+  <div>
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" required class="border rounded px-2 py-1 w-full">
+  </div>
+
+  <div>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required class="border rounded px-2 py-1 w-full">
+  </div>
+
+  <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
+    Login
+  </button>
+</form>
+
+<script>
+    document.getElementById("login-form").addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        try {
+            const response = await fetch("/auth_accounts/sign_in", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify({ auth_account: { email, password } })
+            });
+
+            if (response.ok) {
+                const token = response.headers.get("Authorization")?.split(" ")[1];
+
+                if (token) {
+                    localStorage.setItem("jwt", token);
+                    alert("Login successful! JWT saved.");
+                } else {
+                    alert("Token not found in response.");
+                }
+            } else {
+                const data = await response.json();
+                alert("Login failed: " + (data.error || "Unknown error"));
+            }
+        } catch (err) {
+            console.error("Login error:", err);
+            alert("An error occurred while logging in.");
+        }
+    });
+</script>

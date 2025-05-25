@@ -1,0 +1,15 @@
+<h2 class="text-2xl font-bold mb-4">Forgot your password?</h2>
+
+<%= form_with model: resource, url: auth_account_password_path, local: true, class: "space-y-4" do |f| %>
+  <%= csrf_meta_tags %>
+  <div>
+    <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm" %>
+  </div>
+
+  <div>
+    <%= f.submit "Send me reset password instructions", class: "bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700" %>
+  </div>
+<% end %>
+
+<%= render "auth_accounts/shared/links" %>

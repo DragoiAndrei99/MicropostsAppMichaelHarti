@@ -1,0 +1,13 @@
+<div class="mt-4 space-y-2">
+  <% if controller_name != 'sessions' %>
+    <%= link_to "Log in", new_auth_account_session_path, class: "text-blue-500 hover:underline" %><br>
+  <% end %>
+
+  <% if controller_name != 'registrations' %>
+    <%= link_to "Sign up", new_auth_account_registration_path, class: "text-green-500 hover:underline" %><br>
+  <% end %>
+
+  <% if devise_mapping.recoverable? && controller_name != 'passwords' %>
+    <%= link_to "Forgot your password?", new_auth_account_password_path, class: "text-purple-500 hover:underline" %><br>
+  <% end %>
+</div>

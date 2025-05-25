@@ -1,0 +1,68 @@
+<h2 class="text-xl font-bold mb-4">Sign Up</h2>
+
+<form id="signup-form" class="space-y-4">
+  <%= csrf_meta_tags %>
+  <div>
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" required class="border rounded px-2 py-1 w-full">
+  </div>
+
+  <div>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required class="border rounded px-2 py-1 w-full">
+  </div>
+
+  <div>
+    <label for="password_confirmation">Confirm Password</label>
+    <input type="password" name="password_confirmation" id="password_confirmation" required class="border rounded px-2 py-1 w-full">
+  </div>
+
+  <button type="submit" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">
+    Create Account
+  </button>
+</form>
+
+<script>
+    document.getElementById("signup-form").addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const password_confirmation = document.getElementById("password_confirmation").value;
+
+        try {
+            const response = await fetch("/auth_accounts", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify({
+                    auth_account: {
+                        email,
+                        password,
+                        password_confirmation
+                    }
+                })
+            });
+
+            if (response.ok) {
+                const token = response.headers.get("Authorization")?.split(" ")[1];
+
+                if (token) {
+                    localStorage.setItem("jwt", token);
+                    alert("Account created! You're now logged in.");
+                    window.location.href = "/";
+                } else {
+                    alert("Account created, but no token received.");
+                }
+            } else {
+                const data = await response.json();
+                alert("Signup failed: " + (data.error || JSON.stringify(data)));
+            }
+        } catch (err) {
+            console.error("Signup error:", err);
+            alert("An error occurred while signing up.");
+        }
+    });
+</script>
