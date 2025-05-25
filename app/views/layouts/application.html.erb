@@ -5,8 +5,9 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
-
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "application.tailwind", "data-turbo-track": "reload" %>
+
   <%= javascript_importmap_tags %>
 </head>
 
@@ -24,6 +25,11 @@
     </nav>
   </div>
 </header>
+
+<h1 class="text-3xl font-bold text-blue-600">Test Tailwind funcționează!</h1>
+<h1 class="text-3xl font-bold text-blue-600">Test Tailwind funcționează!</h1>
+<h1 class="text-3xl font-bold text-blue-600">Test Tailwind funcționează!</h1>
+<h1 class="text-3xl font-bold text-blue-600">Test Tailwind funcționează!</h1>
 
 <main class="container mx-auto px-4 py-6 flex-grow">
   <% if notice %>
