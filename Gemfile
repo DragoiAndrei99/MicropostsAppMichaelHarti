@@ -66,7 +66,9 @@ group :test do
 end
 
 gem "cssbundling-rails", "~> 1.4"
-gem "tailwindcss-rails"
 
 gem "bcrypt", "~> 3.1.7"
+
+gem "will_paginate"
+gem "bootstrap-will_paginate"
 
