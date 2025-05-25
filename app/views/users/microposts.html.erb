@@ -1,0 +1,22 @@
+<% content_for :title, "Microposts by #{@user.name}" %>
+
+<div class="max-w-2xl mx-auto py-10">
+  <h1 class="text-4xl font-bold mb-8 text-gray-800">Microposts by <%= @user.name %></h1>
+
+  <% if @microposts.any? %>
+    <div class="space-y-6">
+      <% @microposts.each do |micropost| %>
+        <div class="bg-white p-6 rounded-xl shadow border border-gray-200">
+          <p class="text-lg text-gray-900 mb-2 whitespace-pre-line break-words"><%= micropost.content %></p>
+          <p class="text-sm text-gray-500">Posted at <%= micropost.created_at.strftime("%Y-%m-%d %H:%M") %></p>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-gray-500 text-lg">This user hasn't posted anything yet.</p>
+  <% end %>
+
+  <div class="mt-10">
+    <%= link_to "← Back to users", users_path, class: "inline-block rounded-md bg-gray-100 hover:bg-gray-200 text-gray-800 px-4 py-2 font-medium" %>
+  </div>
+</div>
