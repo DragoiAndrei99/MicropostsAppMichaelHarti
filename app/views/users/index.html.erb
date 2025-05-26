@@ -1,16 +1,18 @@
-<h1>All users</h1>
+<h1 class="text-xl font-bold mb-4">All users</h1>
 
-<%= will_paginate %>
-
-<ul class="users-list">
+<ul class="divide-y divide-gray-200">
   <% @users.each do |user| %>
-    <li>
-      <%= link_to user.name, user %>
-      <% if current_user.admin? && !current_user?(user) %>
-        | <%= link_to "delete", user, method: :delete, data: { confirm: "Are you sure?" } %>
+    <li class="py-3 flex justify-between items-center">
+      <%= link_to user.name, user, class: "text-indigo-600 hover:underline" %>
+      <% if current_user.admin? && current_user != user %>
+        <%= link_to "delete", user, method: :delete,
+                    data: { confirm: "Are you sure?" },
+                    class: "text-red-600 hover:underline text-sm" %>
       <% end %>
     </li>
   <% end %>
 </ul>
 
-<%= will_paginate %>
+<div class="mt-6">
+  <%= will_paginate @users%>
+</div>
