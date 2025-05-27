@@ -29,6 +29,9 @@
     <p class="text-gray-500">No microposts yet.</p>
   <% end %>
 
+  <%= render 'follow_form' if logged_in? %>
+
+
   <%= link_to "Back to users", users_path,
               class: "inline-block mt-6 text-center rounded-md px-4 py-2 bg-gray-100 hover:bg-gray-50 font-medium" %>
 </div>
