@@ -1,0 +1,5 @@
+<%= form_with(model: @micropost, local: true) do |f| %>
+  <%= f.text_area :content, placeholder: "Compose new micropost..." %>
+  <%= f.file_field :image %>
+  <%= f.submit "Post" %>
+<% end %>
