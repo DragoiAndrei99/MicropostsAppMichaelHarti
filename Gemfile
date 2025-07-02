@@ -67,7 +67,7 @@ end
 
 gem "cssbundling-rails", "~> 1.4"
 
-gem "faker", "~> 3.2"
+gem "faker", "~> 3.5"
 
 gem "bcrypt", "~> 3.1.7"
 
